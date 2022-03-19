@@ -37,33 +37,33 @@
     with around 2 Hours break in total. 
 
 ## Postman documentation
-Signup: http://localhost:8000/api/v1/auth/signup POST 
-        body : {
-                "username": "User1",
-                "password": "Tester1234"
-                }
-Login : http://localhost:8000/api/v1/auth/login POST
-        body : {
-                "username": "User1",
-                "password": "Tester1234"
-                }
-Delete user : http://localhost:8000/api/v1/auth/:id DELETE
-                NOTE: I dont put any user restrict or verification, so any can use this API. 
-Get Own Shark : http://localhost:8000/api/v1/shark GET
-                NOTE : need to be logged in
-Get Shark by ID : http://localhost:8000/api/v1/shark/:id GET
-Get top 5 Sharks : http://localhost:8000/api/v1/shark/top-5-sharks GET
-Training shark : http://localhost:8000/api/v1/training 
-                    body: {
-                        "target": "int"
+    Signup: http://localhost:8000/api/v1/auth/signup POST 
+            body : {
+                    "username": "User1",
+                    "password": "Tester1234"
                     }
-PVP : http://localhost:8000/api/v1/pvp/ POST
-        body :{
-            "playerOneId": "62360f1fe69c394c6325769d",
-            "playerTwoId": "62360c05d2e9814d9ce24f82"
-        }
-Get battles by userId : http://localhost:8000/api/v1/pvp/:id GET
-Get own battles list : http://localhost:8000/api/v1/pvp GET
+    Login : http://localhost:8000/api/v1/auth/login POST
+            body : {
+                    "username": "User1",
+                    "password": "Tester1234"
+                    }
+    Delete user : http://localhost:8000/api/v1/auth/:id DELETE
+                    NOTE: I dont put any user restrict or verification, so any can use this API. 
+    Get Own Shark : http://localhost:8000/api/v1/shark GET
+                    NOTE : need to be logged in
+    Get Shark by ID : http://localhost:8000/api/v1/shark/:id GET
+    Get top 5 Sharks : http://localhost:8000/api/v1/shark/top-5-sharks GET
+    Training shark : http://localhost:8000/api/v1/training 
+                        body: {
+                            "target": "int"
+                        }
+    PVP : http://localhost:8000/api/v1/pvp/ POST
+            body :{
+                "playerOneId": "62360f1fe69c394c6325769d",
+                "playerTwoId": "62360c05d2e9814d9ce24f82"
+            }
+    Get battles by userId : http://localhost:8000/api/v1/pvp/:id GET
+    Get own battles list : http://localhost:8000/api/v1/pvp GET
 
 
 

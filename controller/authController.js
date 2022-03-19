@@ -36,6 +36,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     username: req.body.username,
     password: req.body.password,
+    sharkColor: req.body.sharkColor
   });
   createAndSendToken(newUser, 201, req, res);
 });

@@ -58,6 +58,7 @@ const random_hex_color_code = () => {
 userSchema.pre('save', async function(next) {
 
     //console.log(this)
+    if(!this.sharkColor){
     const randomColor = random_hex_color_code();
     this.sharkColor = randomColor;
     const newShark = await Shark.create({
@@ -65,6 +66,7 @@ userSchema.pre('save', async function(next) {
         userOwner: this._id,
     })
     this.sharkId = newShark._id;
+}
     //console.log(newShark);
     next();
 

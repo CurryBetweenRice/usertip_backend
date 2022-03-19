@@ -41,7 +41,8 @@
             body : {
                     "username": "User1",
                     "password": "Tester1234"
-                    }
+                    "sharkColor": "#99a095"
+                    } //User can choose their own shark color by adding the hex code, the API have hex validator, so only hex code can be inserted.
     Login : http://localhost:8000/api/v1/auth/login POST
             body : {
                     "username": "User1",

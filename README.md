@@ -36,7 +36,7 @@
     Initial git 03/19/2022 12:11 PM Local Time , Time finished (Before push to git) 03/20/2022 12:24 AM Local Time
     with around 2 Hours break in total. 
 
-## Postman documentation : 
+## Postman documentation
 Signup: http://localhost:8000/api/v1/auth/signup POST 
         body : {
                 "username": "User1",

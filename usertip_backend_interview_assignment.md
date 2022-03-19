@@ -67,9 +67,9 @@ Shark Game Studios want to make a multiplayer Player vs Player (PvP) game, where
    - We rank them by the number of times that they have won their **Battles**
    - When we retrieve the list of the top 5 **Sharks** in our game, we need them to be sorted from the highest number of **Battles** won to the lowest
 8. Other APIs that we will need:
-   - We need a way to GET a **Shark** by user_id
-   - We need a way to DELETE a **User** record, by user_id. If a user is deleted, their **Shark** record also gets deleted. This allows us to BAN cheaters
-   - We need a way to GET the entire list of **Battle** records by user_id
+   - We need a way to GET a **Shark** by user_id (DONE)
+   - We need a way to DELETE a **User** record, by user_id. If a user is deleted, their **Shark** record also gets deleted. This allows us to BAN cheaters (DONE)
+   - We need a way to GET the entire list of **Battle** records by user_id (DONE)
 
 9. **The entire app must be build with these systems implemented in mind:**
 

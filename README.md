@@ -21,7 +21,7 @@
     NODE_ENV =deveploment
     PORT = 8000
     USER = somepoeple
-    DATABASE_PASSWORD=Google123
+    DATABASE_PASSWORD=1YMOj6UTGc38rqu9
     DATABASE=mongodb+srv://wewe25:<PASSWORD>@fortesting.ve7bj.mongodb.net/sharkpvp?retryWrites=true&w=majority
     mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
 

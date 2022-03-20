@@ -7,8 +7,8 @@ const authController = require('../controller/authController');
 const sharkController = require('../controller/sharkController')
 const pvpController = require('../controller/pvpController');
 
-router.post('/', pvpController.pvp);
-router.get('/:id', pvpController.getListBattles);
+router.post('/', authController.protect, pvpController.pvp);
+router.get('/:id', authController.protect, pvpController.getListBattles);
 router.get('/', authController.protect, pvpController.getOwnListBattles);
 
 

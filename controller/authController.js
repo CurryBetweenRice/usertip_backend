@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const CryptoJS = require('crypto-js');
 const User = require('../models/userModels');
 const jwt = require('jsonwebtoken');
 const catchAsync = require('../utils/catchAsync');
@@ -33,16 +34,23 @@ const createAndSendToken = (user, statusCode, req, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+  const theData = await decryptStuff(req.body.encrypted);
+
   const newUser = await User.create({
-    username: req.body.username,
-    password: req.body.password,
-    sharkColor: req.body.sharkColor
+    username: theData.username,
+    password: theData.password,
+    sharkColor: theData.sharkColor
   });
   createAndSendToken(newUser, 201, req, res);
 });
 
 exports.login = catchAsync(async (req, res,next) => {
-    const { username, password } = req.body;
+    const theData = await decryptStuff(req.body.encrypted)  
+    
+    const {username, password} = theData;
+
+    // console.log(username)
+    // console.log(password)
 
     if(!username || !password){
         return next(new AppError('Wrong email or password', 400));
@@ -54,6 +62,10 @@ exports.login = catchAsync(async (req, res,next) => {
     }
 
     createAndSendToken(user, 200, req, res);
+    // res.status(201).json({
+    //   success: 'success',
+    // })
+
 })
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -103,3 +115,13 @@ exports.deleteUser = catchAsync(async(req, res, next) => {
       status: 'success',
     });
 })
+
+
+decryptStuff = async (theData) => {
+var bytes  = CryptoJS.AES.decrypt(theData, '0901cnu23013mc409123m0');
+var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+console.log(decryptedData)
+
+return decryptedData
+
+}

@@ -3,17 +3,17 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/APIFeature');
 
-exports.postShark = catchAsync(async (req, res, next) => {
-    const newShark = await Shark.create({
-        color: req.body.color,
-    })
-    res.status(201).json({
-        status: 'success',
-        data: {
-          newShark,
-        },
-      });
-})
+// exports.postShark = catchAsync(async (req, res, next) => {
+//     const newShark = await Shark.create({
+//         color: req.body.color,
+//     })
+//     res.status(201).json({
+//         status: 'success',
+//         data: {
+//           newShark,
+//         },
+//       });
+// }) No need, but just this here
 
 exports.getShark = catchAsync(async (req, res, next) => {
     const shark =  await Shark.find({userOwner: req.user._id});

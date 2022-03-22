@@ -10,7 +10,7 @@ process.on('uncaughtException', (err) => {
 dotenv.config({ path: './config.env' });
 const app = require('./index');
 
-//Stuff To do
+//DB Connection
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
@@ -40,6 +40,6 @@ process.on('unhandledRejection', (err) => {
 process.on('SIGTERM', () => {
   console.log('SIGTERM Recieved, dead');
   server.close(() => {
-    console.log('dead already');
+    console.log('Shut off');
   });
 });

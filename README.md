@@ -36,18 +36,36 @@
     Initial git 03/19/2022 12:11 PM Local Time , Time finished (Before push to git) 03/20/2022 12:24 AM Local Time
     with around 2 Hours break in total. 
 
+## How to Login and Signup
+    Because we need to send encrypted data when login/signup , this is how to do it with postman : 
+        ```var CryptoJS = require("crypto-js");
+
+            var secretKey = '0901cnu23013mc409123m0'
+
+            var data = {
+                "username": "User9",
+                "password": "Tester1234"
+            };
+
+            var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
+
+            // Set local variables to postman
+            pm.variables.set("encrypted", ciphertext); ```
+    
+    At pre-request script put above code and and on the body put :
+        ``` {
+                "encrypted": "{{encrypted}}"
+            } ```
+    So the data will be read as body.encrypted later at the backend. 
+
+    Note : the secret key is just me smashing the keyboard , just make sure the secret key had the same value for both postman and node js
+
+
+
+
+
 ## Postman documentation
-    Signup: http://localhost:8000/api/v1/auth/signup POST 
-            body : {
-                    "username": "User1",
-                    "password": "Tester1234"
-                    "sharkColor": "#99a095"
-                    } //User can choose their own shark color by adding the hex code, the API have hex validator, so only hex code can be inserted.
-    Login : http://localhost:8000/api/v1/auth/login POST
-            body : {
-                    "username": "User1",
-                    "password": "Tester1234"
-                    }
+    Note : need to be logged in to access other API route
     Delete user : http://localhost:8000/api/v1/auth/:id DELETE
                     NOTE: I dont put any user restrict or verification, so any can use this API. 
     Get Own Shark : http://localhost:8000/api/v1/shark GET

@@ -49,9 +49,6 @@ exports.login = catchAsync(async (req, res,next) => {
     
     const {username, password} = theData;
 
-    // console.log(username)
-    // console.log(password)
-
     if(!username || !password){
         return next(new AppError('Wrong email or password', 400));
     }
@@ -62,10 +59,6 @@ exports.login = catchAsync(async (req, res,next) => {
     }
 
     createAndSendToken(user, 200, req, res);
-    // res.status(201).json({
-    //   success: 'success',
-    // })
-
 })
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -120,8 +113,6 @@ exports.deleteUser = catchAsync(async(req, res, next) => {
 decryptStuff = async (theData) => {
 var bytes  = CryptoJS.AES.decrypt(theData, '0901cnu23013mc409123m0');
 var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-console.log(decryptedData)
-
 return decryptedData
 
 }

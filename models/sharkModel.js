@@ -46,32 +46,6 @@ sharkSchema.pre(/^find/, async function(next) {
     /*
     19 March 2022 18:26 local time, after taking a short break from code, went to cut my hair to makes my head a relax a little bit, while the barber message my head, i found solution to this problem, no need manual refresh anymore
     */
-
-
-    //const time = parseInt((this.updatedAt.getTime() / 1000).toFixed(0))
-    // this.r = await this.findOne();
-
-    // const timeNow = parseInt((Date.now() / 1000).toFixed(0))
-    // const timePast = timeNow - time
-
-    // if(timePast > 60){
-    //     if (timePast >= 600){
-    //         // await this.findOneAndUpdate({userOwner:req.user._id}, {stamina: 10});
-    //         this.stamina = 10;
-    //     }
-    //     const staminaGain = parseInt((timePast / 60).toFixed(0));
-    //     if (shark.stamina + staminaGain > 10){
-    //         // await Shark.findOneAndUpdate({userOwner:req.user._id}, {stamina: 10});
-    //         this.stamina = 10;
-    //     }
-    //     else 
-    //     {
-    //         // const newStamina = shark.stamina + staminaGain
-    //         // await Shark.findOneAndUpdate({userOwner:req.user._id}, {stamina: newStamina})
-    //         this.stamina = newStamina;
-    //     }
-    // }
-
     next();
 })
 

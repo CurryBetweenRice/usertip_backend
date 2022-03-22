@@ -47,37 +47,19 @@ const random_hex_color_code = () => {
     return '#' + n.slice(0, 6);
 };
 
-// const getUserInput = () => {
-   
-//     let userChoice = reader.question("Input here : ")
-//     return userChoice;
-    
-// }
-
-
 userSchema.pre('save', async function(next) {
-
-    //console.log(this)
     if(!this.sharkColor){
-    const randomColor = random_hex_color_code();
-    this.sharkColor = randomColor;
-    const newShark = await Shark.create({
-        color: randomColor,
-        userOwner: this._id,
-    })
-    this.sharkId = newShark._id;
-}
-    //console.log(newShark);
+        const randomColor = random_hex_color_code();
+        this.sharkColor = randomColor;
+        const newShark = await Shark.create({
+            color: randomColor,
+            userOwner: this._id,
+        })
+        this.sharkId = newShark._id;
+    }
+    
     next();
-
 } )
-
-// userSchema.post('save', async function(next) {
-//     const userShark = Shark.find({userOwner: this.username})
-
-// })
-
-
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

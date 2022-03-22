@@ -20,42 +20,20 @@ function makeid() {
     return Date.now().toString(36) + Math.random().toString(36);
 } // this one unique because using date, but the string can be absudrd
 
-exports.pvp = catchAsync(async (req, res, next) => {
-    console.log(req.body);
-    
+exports.pvp = catchAsync(async (req, res, next) => { 
     const firstPlayer = await User.findById(req.body.playerOneId);
     const secondPlayer = await User.findById(req.body.playerTwoId);
     const firstPlayerShark = await Shark.findOne({userOwner: req.body.playerOneId})
     const secondPlayerShark = await Shark.findOne({userOwner: req.body.playerTwoId})
     const customId = makeid();
 
-
-    console.log(firstPlayer);
-    console.log(secondPlayer);
-    // console.log(firstPlayerShark);
-    // console.log(secondPlayerShark);
-
     const roundResult = [];
 
     for (let i = 0; i < 3; i++){
         roundResult[i] = await PVPBattle(firstPlayerShark, secondPlayerShark, customId)
     }
-    //const result = await PVPBattle(firstPlayerShark, secondPlayerShark, 1)
-    //console.log(roundResult);
-    // for (let i = 0; i < 3; i++){
-    //     // console.log(roundResult[i].winnerId)
-    //     // console.log(firstPlayer._id)
-    //     if(roundResult[i].winnerId === firstPlayer._id){
-    //         player1WinCounter++;
-    //     }
-    //     if(roundResult[i].winnerId === secondPlayer._id){
-    //         player2WinCounter++;
-    //     }
-    // }
 
     const winner = checkWhoWon(firstPlayer, secondPlayer, roundResult);
-    //console.log(winner);
-    //console.log(roundResult);
     const batRecord = await BattleRecord.create({
         player1Id: firstPlayer._id,
         player2Id: secondPlayer._id,
@@ -66,26 +44,19 @@ exports.pvp = catchAsync(async (req, res, next) => {
         round3: roundResult[2],
         customId: customId,
     })
-    console.log(batRecord);
     
     const winnerShark = await Shark.findOne({userOwner: winner._id}) 
     const won = parseInt(winnerShark.battleWon + 1)
 
     await Shark.findOneAndUpdate({userOwner:winner._id}, {battleWon: won })
 
-
-
-
-
     res.status(201).json({
         status: 'success',
         data: {
             batRecord
+            //If want to show just who the winner change batRecord to batRecord.winnerId
         }
       });
-
-
-
 })
 
 function checkWhoWon(player1, player2, roundResult){
@@ -99,8 +70,6 @@ function checkWhoWon(player1, player2, roundResult){
             player2WinCounter++;
         }
     }
-    // console.log(player1WinCounter);
-    // console.log(player2WinCounter);
     if(player1WinCounter > player2WinCounter){
         return player1;
     }else {
@@ -108,32 +77,17 @@ function checkWhoWon(player1, player2, roundResult){
     }
 
 }
-
-function randomIntFromInterval() { // min and max included 
-    return Math.floor(Math.random() * 4)
-}
 function tieBreaker() { // min and max included 
     return Math.floor(Math.random() * 2) + 1
   }
 
 
 const PVPBattle = async (shark1, shark2, customId) => {
-    
-    //1 = int , 2 = str, 3 = spd
-    //int > str 1 2
-    //str > spd 2 3
-    //spd > int 3 1
-
-    //console.log(round)
     let theData;
 
     let winner;
     const player1Choice = Math.floor(Math.random() * 3) + 1;
     const player2Choice = Math.floor(Math.random() * 3) + 1;
-    // console.log(player1Choice);
-    // console.log(player2Choice);
-    // console.log(shark1)
-    // console.log(shark2)
 
    if(player1Choice === 1){ // int
         
@@ -361,10 +315,6 @@ if(player1Choice === 3){ // spd
 }
 
 return theData;
-
-
-
-
 }
 
 exports.getListBattles = catchAsync(async(req, res, next) => {
